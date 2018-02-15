@@ -2,11 +2,6 @@
 const mongoose = require('../config/database')
 const { Schema } = mongoose
 
-const boardSchema = new Schema({
-  symbol: { type: String, required: true },
-  visible: { type: Boolean, default: false },
-  won: { type: Boolean, default: false },
-});
 
 const playerSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'users' },
@@ -14,7 +9,6 @@ const playerSchema = new Schema({
 });
 
 const gameSchema = new Schema({
-  squares: [boardSchema],
   players: [playerSchema],
   turn: { type: Number, default: 0 }, // player index
   started: { type: Boolean, default: false },
@@ -22,6 +16,8 @@ const gameSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'users' },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+  square: []
+
 
 });
 
